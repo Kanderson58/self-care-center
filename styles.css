@@ -22,10 +22,6 @@ h2 {
     color: #ffff;
     margin-bottom: 0.5%;
 }
-.yellow-dude {
-    display: inline-block;
-    padding: 2%
-}
 .recieve-message-box {
     background-color: #ffff;
     border: none;
@@ -40,7 +36,7 @@ h2 {
     border: none;
     border-radius: 10px;
     width: 800px;
-    height: 100px;
+    height: 90px;
     margin: auto;
 }
 .recieve-message-button {
@@ -62,6 +58,9 @@ h2 {
 .mantra {
     display: inline;
 }
+.message-text, .yellow-dude {
+    padding-top: 2%;
+}
 footer {
-    margin: 10%;
+    margin: 20%;
 }
