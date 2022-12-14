@@ -50,6 +50,7 @@ h2 {
     text-align: center;
     color: #ffff;
     margin-top: 5%;
+    font-family: 'Quicksand', sans-serif;
 }
 .affirmation {
     display: inline;
@@ -59,7 +60,7 @@ h2 {
     display: inline;
 }
 .message-text, .yellow-dude {
-    padding-top: 2%;
+    padding: 2%;
 }
 footer {
     margin: 20%;
