@@ -6,3 +6,62 @@ dark-blue - #134d71;
 white - #ffffff;
 black - #000000;
 */
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-image: linear-gradient(#134d71,#78a7c6,#ffff);
+    text-align: center;
+    margin: auto;
+}
+header {
+    color: #ffff;
+    padding-top: 2%;
+    padding-bottom: 4%;
+}
+h2 {
+    color: #ffff;
+    margin-bottom: 0.5%;
+}
+.yellow-dude {
+    display: inline-block;
+    padding: 2%
+}
+.recieve-message-box {
+    background-color: #ffff;
+    border: none;
+    border-radius: 10px;
+    width: 500px;
+    margin: auto;
+    margin-bottom: 5%;
+    padding: 1%;
+}
+.display-message-box {
+    background-color: #ffff;
+    border: none;
+    border-radius: 10px;
+    width: 800px;
+    height: 100px;
+    margin: auto;
+}
+.recieve-message-button {
+    display: block;
+    margin: auto;
+    background-color: #134d71;
+    border: none;
+    border-radius: 5px;
+    width: 150px;
+    height: 25px;
+    text-align: center;
+    color: #ffff;
+    margin-top: 5%;
+}
+.affirmation {
+    display: inline;
+    margin-right: 30%;
+}
+.mantra {
+    display: inline;
+}
+footer {
+    margin: 10%;
+}
