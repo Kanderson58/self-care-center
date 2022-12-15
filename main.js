@@ -1,27 +1,30 @@
 // Query selected elements:
 var svg = document.querySelector(".svg")
-var recieveMessageButton = document.querySelector(".recieve-message-button")
 var messageText = document.querySelector(".message-text")
 var radioButtonMantra = document.getElementById("mantra")
 var radioButtonAffirmation = document.getElementById("affirmation")
-var addToFavesButton = document.querySelector(".add-to-favorite-button")
 var seeFavoritesView = document.querySelector(".view-favorites")
-var viewFavoritesButton = document.querySelector(".see-favorites-button")
 var seeHomeView = document.querySelector(".home-view")
 var favoriteAffirmations = document.querySelector("#favorite-affirmations")
 var favoriteMantras = document.querySelector("#favorite-mantras")
+// Buttons:
+var viewFavoritesButton = document.querySelector(".see-favorites-button")
+var addToFavesButton = document.querySelector(".add-to-favorite-button")
+var recieveMessageButton = document.querySelector(".recieve-message-button")
 var viewHomePageButton = document.querySelector(".home-page-button")
-var deleteButton = document.querySelector(".delete")
+var clearMessageButton = document.querySelector(".clear-message-button")
 // Event listeners:
 window.addEventListener("load", showHomeView)
 recieveMessageButton.addEventListener("click", displayRandomMessage)
 addToFavesButton.addEventListener("click", addToFaves)
 viewFavoritesButton.addEventListener("click", showFavorites)
 viewHomePageButton.addEventListener("click", hideFaveView)
+clearMessageButton.addEventListener("click", clearMessage)
 // Event handlers:
 function displayRandomMessage() {
     svg.style.display = "none"
     addToFavesButton.hidden = false
+    clearMessageButton.hidden = false
     if(radioButtonMantra.checked) {
         messageText.innerText = randomMantra()
         currentMantra = messageText.innerText
@@ -35,6 +38,7 @@ function displayRandomMessage() {
 }
 function showHomeView() {
     addToFavesButton.hidden = true
+    clearMessageButton.hidden = true
     seeHomeView.style.display = "inline"
     seeFavoritesView.style.display = "none"
 }
@@ -61,10 +65,10 @@ function showFavorites() {
     seeHomeView.style.display = "none"
     seeFavoritesView.style.display = "inline"
     for(var i = 0; i < faveAffirmations.length; i++) {
-        favoriteAffirmations.innerHTML += `<li>${faveAffirmations[i]} <button class="delete" onclick="deleteAffirmation(${i})">Delete</button><br><br></li>`
+        favoriteAffirmations.innerHTML += `<li>${faveAffirmations[i]} <button class="delete-button" onclick="deleteAffirmation(${i})">Delete</button><br><br></li>`
     }
     for(var i = 0; i < faveMantras.length; i++) {
-        favoriteMantras.innerHTML += `<li>${faveMantras[i]} <button class="delete" onclick="deleteMantra(${i})">Delete</button><br><br></li>`
+        favoriteMantras.innerHTML += `<li>${faveMantras[i]} <button class="delete-button" onclick="deleteMantra(${i})">Delete</button><br><br></li>`
     }
 }
 function deleteAffirmation(i) {
@@ -75,12 +79,18 @@ function deleteMantra(i) {
     faveMantras.splice(i, 1);
     showFavorites()
 }
+function clearMessage() {
+    messageText.innerText = ""
+    addToFavesButton.hidden = true
+    clearMessageButton.hidden = true
+    svg.style.display = "inline"
+}
 // List of messages:
 var currentMantra = "";
 var currentAffirmation = "";
 var faveMantras = [];
 var faveAffirmations = [];
-var affirmationArray = ["-I forgive myself and set myself free.",
+var affirmationArray = ["I forgive myself and set myself free.",
     "I believe I can be all that I want to be.",
     "I am in the process of becoming the best version of myself.",
     "I have the freedom & power to create the life I desire.",

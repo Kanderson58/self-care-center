@@ -3,7 +3,6 @@ body {
     text-align: center;
     color: #ffff;
     background-image: linear-gradient(#134d71,#78a7c6,#f7e4bf);
-    background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
@@ -17,7 +16,7 @@ h2 {
     margin-bottom: 0.5%;
 }
 
-.recieve-message-button, .add-to-favorite-button, .see-favorites-button, .home-page-button, .delete-button {
+.recieve-message-button, .add-to-favorite-button, .see-favorites-button, .home-page-button, .delete-button, .clear-message-button {
     background-color: #134d71;
     color: #ffff;
     font-family: 'Quicksand', sans-serif;
@@ -34,8 +33,13 @@ h2 {
     margin-top: 4%;
 }
 
-.see-favorites-button{
-    margin: 2%;
+.see-favorites-button {
+    margin: 5%;
+}
+
+.clear-message-button {
+    margin-bottom: 2%;
+    margin-left: 2%;
 }
 
 .delete-button {
@@ -62,6 +66,7 @@ h2 {
     height: 100px;
     margin: auto;
     margin-top: 5%;
+    margin-bottom: 2%;
 }
 
 .mantra, .affirmation {
