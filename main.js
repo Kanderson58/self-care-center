@@ -8,8 +8,8 @@ var addToFavesButton = document.querySelector(".add-to-favorite-button")
 var seeFavoritesView = document.querySelector(".view-favorites")
 var viewFavoritesButton = document.querySelector(".see-favorites-button")
 var seeHomeView = document.querySelector(".home-view")
-var favoriteAffirmations = document.querySelector("fave-affirmations")
-var favoriteMantras = document.querySelector("fave-mantras")
+var favoriteAffirmations = document.querySelector("#favorite-affirmations")
+var favoriteMantras = document.querySelector("#favorite-mantras")
 // Event listeners:
 window.addEventListener("load", showHomeView)
 recieveMessageButton.addEventListener("click", displayRandomMessage)
@@ -41,22 +41,28 @@ function randomMantra() {
     return mantraArray[Math.floor(Math.random() * mantraArray.length)]
 }
 function addToFaves() {
-    if(radioButtonMantra.checked === true) {
+    if(radioButtonMantra.checked && currentMantra !== "" && !faveMantras.includes(currentMantra)) {
         faveMantras.push(currentMantra);
-    } else {
+    } else if(radioButtonAffirmation.checked && currentAffirmation !== "" && !faveAffirmations.includes(currentAffirmation)) {
         faveAffirmations.push(currentAffirmation);
     }
 }
 function showFavorites() {
     seeHomeView.style.display = "none"
     seeFavoritesView.style.display = "block"
+    for(var i = 0; i < faveAffirmations.length; i++) {
+        favoriteAffirmations.innerHTML += `<li>${faveAffirmations[i]}<br><br></li>`
+    }
+    for(var i = 0; i < faveMantras.length; i++) {
+        favoriteMantras.innerHTML += `<li>${faveMantras[i]}<br><br></li>`
+    }
+
 }
 
 // ✅ When a message appears, it should appear with a “Favorite” button.
 // ✅ When the “Favorite” button is clicked, that message should be added to a new list of favorite messages.
-// Users should be able to view their favorites by clicking a “View Favorites” button that exists somewhere on the page
-// When the “View Favorites” button is clicked, users should be taken to a new page that displays all of their favorite messages.
-    // Display favorite mantra/favorite affirmation arrays in two inline fieldsets with justify-content: space-between, in <ul>
+// ✅ Users should be able to view their favorites by clicking a “View Favorites” button that exists somewhere on the page
+// ✅ When the “View Favorites” button is clicked, users should be taken to a new page that displays all of their favorite messages.
 // Users should be able to navigate back to the main page by clicking a button.
     // Add button "Main Page" and add event listener to it that shows main page view when clicked.  Maybe add styling to show which button is currently selected?
 // Users should be able to remove a message from their list of favorites, by clicking a button.

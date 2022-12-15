@@ -16,8 +16,8 @@ header {
     color: #ffff;
 }
 .home-view {
-    text-align: center;
     display: flex;
+    text-align: center;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center
@@ -87,23 +87,21 @@ h2 {
     margin: 2%;
 }
 .view-favorites {
+    display: flex;
     height: 500px;
-    /* display: flex;
-    text-align: center;
-    flex-direction: row; */
-    /* justify-content: space-evenly; */
-    /* align-items: center */
 }
-.favorite-affirmations, .favorite-mantras {
-    display: inline-block;
+.column {
+    float: left;
+    width: 35%;
     background-color: #ffff;
-    width: 500px;
-    margin-left: 5%;
-    margin-right: 5%;
-    padding-top: 2%;
-    padding-bottom: 2%;
     border: none;
     border-radius: 10px;
+    margin: 5%;
+    padding: 2%;
+}
+.row:after {
+    display: table;
+    clear: both;
 }
 h3 {
     color: #ffff;
