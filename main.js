@@ -10,11 +10,14 @@ var viewFavoritesButton = document.querySelector(".see-favorites-button")
 var seeHomeView = document.querySelector(".home-view")
 var favoriteAffirmations = document.querySelector("#favorite-affirmations")
 var favoriteMantras = document.querySelector("#favorite-mantras")
+var viewHomePageButton = document.querySelector(".home-page-button")
+var deleteButton = document.querySelector(".delete")
 // Event listeners:
 window.addEventListener("load", showHomeView)
 recieveMessageButton.addEventListener("click", displayRandomMessage)
 addToFavesButton.addEventListener("click", addToFaves)
 viewFavoritesButton.addEventListener("click", showFavorites)
+viewHomePageButton.addEventListener("click", hideFaveView)
 // Event handlers:
 function displayRandomMessage() {
     svg.style.display = "none"
@@ -32,6 +35,11 @@ function displayRandomMessage() {
 }
 function showHomeView() {
     addToFavesButton.hidden = true
+    seeHomeView.style.display = "inline"
+    seeFavoritesView.style.display = "none"
+}
+function hideFaveView() {
+    seeHomeView.style.display = "inline"
     seeFavoritesView.style.display = "none"
 }
 function randomAffirmation() {
@@ -41,53 +49,50 @@ function randomMantra() {
     return mantraArray[Math.floor(Math.random() * mantraArray.length)]
 }
 function addToFaves() {
-    if(radioButtonMantra.checked && currentMantra !== "" && !faveMantras.includes(currentMantra)) {
+    if(radioButtonMantra.checked && currentMantra !== "" && faveMantras.includes(currentMantra) === false) {
         faveMantras.push(currentMantra);
-    } else if(radioButtonAffirmation.checked && currentAffirmation !== "" && !faveAffirmations.includes(currentAffirmation)) {
+    } else if(radioButtonAffirmation.checked && currentAffirmation !== "" && faveAffirmations.includes(currentAffirmation) === false) {
         faveAffirmations.push(currentAffirmation);
     }
 }
 function showFavorites() {
+    favoriteAffirmations.innerHTML = "<strong><u>Favorite Affirmations<br><br></u></strong>"
+    favoriteMantras.innerHTML = "<strong><u>Favorite Mantras<br><br></u></strong>"
     seeHomeView.style.display = "none"
-    seeFavoritesView.style.display = "block"
+    seeFavoritesView.style.display = "inline"
     for(var i = 0; i < faveAffirmations.length; i++) {
-        favoriteAffirmations.innerHTML += `<li>${faveAffirmations[i]}<br><br></li>`
+        favoriteAffirmations.innerHTML += `<li>${faveAffirmations[i]} <button class="delete" onclick="deleteAffirmation(${i})">Delete</button><br><br></li>`
     }
     for(var i = 0; i < faveMantras.length; i++) {
-        favoriteMantras.innerHTML += `<li>${faveMantras[i]}<br><br></li>`
+        favoriteMantras.innerHTML += `<li>${faveMantras[i]} <button class="delete" onclick="deleteMantra(${i})">Delete</button><br><br></li>`
     }
-
 }
-
-// ✅ When a message appears, it should appear with a “Favorite” button.
-// ✅ When the “Favorite” button is clicked, that message should be added to a new list of favorite messages.
-// ✅ Users should be able to view their favorites by clicking a “View Favorites” button that exists somewhere on the page
-// ✅ When the “View Favorites” button is clicked, users should be taken to a new page that displays all of their favorite messages.
-// Users should be able to navigate back to the main page by clicking a button.
-    // Add button "Main Page" and add event listener to it that shows main page view when clicked.  Maybe add styling to show which button is currently selected?
-// Users should be able to remove a message from their list of favorites, by clicking a button.
-    // Each message has an added <button> that splices it from that array and calls the View Favorites function again.
-// As you add these new elements to the page, be sure to match the style of existing elements.
-    // Sans serif, rounded corners, white fieldsets, sparkly emojis!
-
+function deleteAffirmation(i) {
+    faveAffirmations.splice(i, 1);
+    showFavorites()
+}
+function deleteMantra(i) {
+    faveMantras.splice(i, 1);
+    showFavorites()
+}
 // List of messages:
 var currentMantra = "";
 var currentAffirmation = "";
 var faveMantras = [];
 var faveAffirmations = [];
 var affirmationArray = ["-I forgive myself and set myself free.",
-    "-I believe I can be all that I want to be.",
-    "-I am in the process of becoming the best version of myself.",
-    "-I have the freedom & power to create the life I desire.",
-    "-I choose to be kind to myself and love myself unconditionally.",
-    "-My possibilities are endless.",
-    "-I am worthy of my dreams.",
-    "-I am enough.",
-    "-I deserve to be healthy and feel good.",
-    "-I am full of energy and vitality and my mind is calm and peaceful.",
-    "-Every day I am getting healthier and stronger.",
-    "-I honor my body by trusting the signals that it sends me.",
-    "-I manifest perfect health by making smart choices."];
+    "I believe I can be all that I want to be.",
+    "I am in the process of becoming the best version of myself.",
+    "I have the freedom & power to create the life I desire.",
+    "I choose to be kind to myself and love myself unconditionally.",
+    "My possibilities are endless.",
+    "I am worthy of my dreams.",
+    "I am enough.",
+    "I deserve to be healthy and feel good.",
+    "I am full of energy and vitality and my mind is calm and peaceful.",
+    "Every day I am getting healthier and stronger.",
+    "I honor my body by trusting the signals that it sends me.",
+    "I manifest perfect health by making smart choices."];
 var mantraArray = ["Breathing in, I send myself love. Breathing out, I send love to someone else who needs it.",
     "Do not let yesterday take up too much of today.",
     "Every day is a second chance.",
