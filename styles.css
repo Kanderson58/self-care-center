@@ -25,7 +25,7 @@ span {
     margin-top: 10%
 }
 
-.recieve-message-button, .add-to-favorite-button, .see-favorites-button, .home-page-button, .delete-button, .clear-message-button, .delete-from-possibilities-button, .submit-button {
+.recieve-message-button, .add-to-favorite-button, .see-favorites-button, .home-page-button, .delete-button, .clear-message-button, .delete-from-possibilities-button, .submit-button, .make-own-button, .DIY-button {
     background-color: #134d71;
     color: #ffff;
     font-family: 'Quicksand', sans-serif;
@@ -39,21 +39,17 @@ span {
 .recieve-message-button {
     display: block;
     margin: auto;
-    margin-top: 4%;
+    margin-top: 1%;
 }
 
-.see-favorites-button, .submit-button {
+.see-favorites-button, .submit-button, .make-own-button, .DIY-button {
     margin: 2%;
 }
 
-.clear-message-button {
-    margin-bottom: 2%;
-    margin-left: 2%;
-}
-
-.delete-from-possibilities-button {
+.delete-from-possibilities-button, .add-to-favorite-button, .clear-message-button {
     width: 175px;
-    margin-left: 2%;
+    margin-right: 1%;
+    margin-left: 1%;
     margin-bottom: 2%;
 }
 
@@ -91,6 +87,10 @@ span {
 
 .message-text, .svg {
     padding-top: 2%;
+}
+
+.DIY {
+    margin: 1%
 }
 
 .column {

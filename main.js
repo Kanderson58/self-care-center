@@ -10,6 +10,8 @@ var favoriteMantras = document.querySelector("#favorite-mantras")
 var seeLoginView = document.querySelector(".login-view")
 var nameInput = document.querySelector(".login")
 var homeGreeting = document.querySelector(".say-hello")
+var doItYourselfForm = document.querySelector(".DIY-form")
+var userNewMessage = document.querySelector(".DIY")
 // Buttons:
 var submitButton = document.querySelector(".submit-button")
 var viewFavoritesButton = document.querySelector(".see-favorites-button")
@@ -18,6 +20,8 @@ var recieveMessageButton = document.querySelector(".recieve-message-button")
 var viewHomePageButton = document.querySelector(".home-page-button")
 var clearMessageButton = document.querySelector(".clear-message-button")
 var removeFromPossibleButton = document.querySelector(".delete-from-possibilities-button")
+var makeYourOwnButton = document.querySelector(".make-own-button")
+var submitYourOwnButton = document.querySelector(".DIY-button")
 // Event listeners:
 window.addEventListener("load", showLoginView)
 submitButton.addEventListener("click", showHomeView)
@@ -27,7 +31,9 @@ viewFavoritesButton.addEventListener("click", showFavorites)
 viewHomePageButton.addEventListener("click", hideFaveView)
 clearMessageButton.addEventListener("click", clearMessage)
 removeFromPossibleButton.addEventListener("click", removeFromPossible)
-// Event handlers:
+makeYourOwnButton.addEventListener("click", makeYourOwn)
+submitYourOwnButton.addEventListener("click", submitYourOwn)
+// Event handlers: 
 function showLoginView() {
     seeLoginView.style.display = "inline"
     seeHomeView.style.display = "none"
@@ -39,6 +45,7 @@ function showHomeView() {
         addToFavesButton.hidden = true
         clearMessageButton.hidden = true
         removeFromPossibleButton.hidden = true
+        doItYourselfForm.hidden = true
         seeHomeView.style.display = "inline"
         seeFavoritesView.style.display = "none"
         seeLoginView.style.display = "none"
@@ -72,12 +79,12 @@ function displayRandomMessage() {
 }
 function preventRepeatMantra() {
     for(var i = 0; i < usedMantras.length; i++) {
-        if(usedMantras[i] !== currentMantra && usedMantras.length < 16) {
+        if(usedMantras[i] !== currentMantra && usedMantras.length < mantraArray.length + 1) {
             usedMantras.push(currentMantra)
             return
         }
     } 
-    if (usedMantras.length === 16) {
+    if (usedMantras.length === mantraArray.length + 1) {
         addToFavesButton.hidden = true
         removeFromPossibleButton.hidden = true
         messageText.innerHTML = "<strong>✨ That's all the mantras!  They will now repeat. ✨</strong>"
@@ -86,12 +93,12 @@ function preventRepeatMantra() {
 }
 function preventRepeatAffirmation() {
     for(var i = 0; i < usedAffirmations.length; i++) {
-        if(usedAffirmations[i] !== currentAffirmation && usedAffirmations.length < 14) {
+        if(usedAffirmations[i] !== currentAffirmation && usedAffirmations.length < affirmationArray.length + 1) {
             usedAffirmations.push(currentAffirmation)
             return
         }
     } 
-    if (usedAffirmations.length === 14) {
+    if (usedAffirmations.length === affirmationArray.length + 1) {
         addToFavesButton.hidden = true
         removeFromPossibleButton.hidden = true
         messageText.innerHTML = "<strong>✨ That's all the affirmations!  They will now repeat. ✨</strong>"
@@ -112,8 +119,8 @@ function addToFaves() {
     }
 }
 function showFavorites() {
-    favoriteAffirmations.innerHTML = "<strong><u>Favorite Affirmations<br><br></u></strong>"
     favoriteMantras.innerHTML = "<strong><u>Favorite Mantras<br><br></u></strong>"
+    favoriteAffirmations.innerHTML = "<strong><u>Favorite Affirmations<br><br></u></strong>"
     seeHomeView.style.display = "none"
     seeFavoritesView.style.display = "inline"
     for(var i = 0; i < faveAffirmations.length; i++) {
@@ -154,12 +161,29 @@ function removeFromPossible() {
        }
     }
 }
-// Refactor your application so that the user lands on a “Login” page
-    // change window event listener to call showLoginPage
-// The login page should match the style of the application.
-// The login page should contain an input for a user to enter their name, and a button to submit.
-// After the user clicks the submit button, they should be taken to the main application page, and see a personalized greeting that displays their name and some sort of welcome message.
-// The welcome message and name should appear in a logical place of your choosing.
+function makeYourOwn() {
+    doItYourselfForm.hidden = false
+    makeYourOwnButton.hidden = true
+}
+function submitYourOwn() {
+    svg.style.display = "none"
+    clearMessageButton.hidden = false
+    addToFavesButton.hidden = false
+    removeFromPossibleButton.hidden = true
+    if(!radioButtonMantra.checked && !radioButtonAffirmation.checked) {
+        messageText.innerText = "Please select if you would like an affirmation or a mantra!"
+    } else if(userNewMessage.value === "") {
+        messageText.innerText = "Please write your message in the box!"
+    } else if(radioButtonMantra.checked && mantraArray.includes(userNewMessage.value) === false) {
+        currentMantra = userNewMessage.value
+        mantraArray.push(userNewMessage.value)
+        messageText.innerText = userNewMessage.value
+    } else if(radioButtonAffirmation.checked && affirmationArray.includes(userNewMessage.value) === false) {
+        currentAffirmation = userNewMessage.value
+        affirmationArray.push(userNewMessage.value)
+        messageText.innerText = userNewMessage.value
+    }
+}
 // List of messages:
 var currentMantra = "";
 var currentAffirmation = "";
