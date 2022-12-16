@@ -7,7 +7,11 @@ var seeFavoritesView = document.querySelector(".view-favorites")
 var seeHomeView = document.querySelector(".home-view")
 var favoriteAffirmations = document.querySelector("#favorite-affirmations")
 var favoriteMantras = document.querySelector("#favorite-mantras")
+var seeLoginView = document.querySelector(".login-view")
+var nameInput = document.querySelector(".login")
+var homeGreeting = document.querySelector(".say-hello")
 // Buttons:
+var submitButton = document.querySelector(".submit-button")
 var viewFavoritesButton = document.querySelector(".see-favorites-button")
 var addToFavesButton = document.querySelector(".add-to-favorite-button")
 var recieveMessageButton = document.querySelector(".recieve-message-button")
@@ -15,7 +19,8 @@ var viewHomePageButton = document.querySelector(".home-page-button")
 var clearMessageButton = document.querySelector(".clear-message-button")
 var removeFromPossibleButton = document.querySelector(".delete-from-possibilities-button")
 // Event listeners:
-window.addEventListener("load", showHomeView)
+window.addEventListener("load", showLoginView)
+submitButton.addEventListener("click", showHomeView)
 recieveMessageButton.addEventListener("click", displayRandomMessage)
 addToFavesButton.addEventListener("click", addToFaves)
 viewFavoritesButton.addEventListener("click", showFavorites)
@@ -23,6 +28,29 @@ viewHomePageButton.addEventListener("click", hideFaveView)
 clearMessageButton.addEventListener("click", clearMessage)
 removeFromPossibleButton.addEventListener("click", removeFromPossible)
 // Event handlers:
+function showLoginView() {
+    seeLoginView.style.display = "inline"
+    seeHomeView.style.display = "none"
+    seeFavoritesView.style.display = "none"
+}
+function showHomeView() {
+    if (nameInput.value) {
+        homeGreeting.innerHTML = `Hello <span>${nameInput.value}</span>, we're glad you're here!`
+        addToFavesButton.hidden = true
+        clearMessageButton.hidden = true
+        removeFromPossibleButton.hidden = true
+        seeHomeView.style.display = "inline"
+        seeFavoritesView.style.display = "none"
+        seeLoginView.style.display = "none"
+    } else {
+        alert("Please enter your name to continue!")
+    }
+}
+function hideFaveView() {
+    seeHomeView.style.display = "inline"
+    seeFavoritesView.style.display = "none"
+    seeLoginView.style.display = "none"
+}
 function displayRandomMessage() {
     svg.style.display = "none"
     addToFavesButton.hidden = false
@@ -69,17 +97,6 @@ function preventRepeatAffirmation() {
         messageText.innerHTML = "<strong>✨ That's all the affirmations!  They will now repeat. ✨</strong>"
         usedAffirmations = [""]
     }
-}
-function showHomeView() {
-    addToFavesButton.hidden = true
-    clearMessageButton.hidden = true
-    removeFromPossibleButton.hidden = true
-    seeHomeView.style.display = "inline"
-    seeFavoritesView.style.display = "none"
-}
-function hideFaveView() {
-    seeHomeView.style.display = "inline"
-    seeFavoritesView.style.display = "none"
 }
 function randomAffirmation() {
     return affirmationArray[Math.floor(Math.random() * affirmationArray.length)]
@@ -137,6 +154,12 @@ function removeFromPossible() {
        }
     }
 }
+// Refactor your application so that the user lands on a “Login” page
+    // change window event listener to call showLoginPage
+// The login page should match the style of the application.
+// The login page should contain an input for a user to enter their name, and a button to submit.
+// After the user clicks the submit button, they should be taken to the main application page, and see a personalized greeting that displays their name and some sort of welcome message.
+// The welcome message and name should appear in a logical place of your choosing.
 // List of messages:
 var currentMantra = "";
 var currentAffirmation = "";

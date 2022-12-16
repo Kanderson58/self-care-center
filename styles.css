@@ -8,15 +8,24 @@ body {
 
 h1, h3 {
     font-size: 30px;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
 }
 
-h2 {
+h2, h4, span {
     font-size: 20px;
+    margin-top: 2%;
     margin-bottom: 0.5%;
 }
 
-.recieve-message-button, .add-to-favorite-button, .see-favorites-button, .home-page-button, .delete-button, .clear-message-button, .delete-from-possibilities-button {
+span {
+    color: #f7e4bf
+}
+
+.greeting {
+    margin-top: 10%
+}
+
+.recieve-message-button, .add-to-favorite-button, .see-favorites-button, .home-page-button, .delete-button, .clear-message-button, .delete-from-possibilities-button, .submit-button {
     background-color: #134d71;
     color: #ffff;
     font-family: 'Quicksand', sans-serif;
@@ -33,8 +42,8 @@ h2 {
     margin-top: 4%;
 }
 
-.see-favorites-button {
-    margin: 3%;
+.see-favorites-button, .submit-button {
+    margin: 2%;
 }
 
 .clear-message-button {
@@ -80,12 +89,8 @@ h2 {
     display: inline;
 }
 
-.message-text {
+.message-text, .svg {
     padding-top: 2%;
-}
-
-.svg {
-    padding-top: 2%
 }
 
 .column {
