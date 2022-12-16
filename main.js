@@ -31,13 +31,43 @@ function displayRandomMessage() {
     if(radioButtonMantra.checked) {
         messageText.innerText = randomMantra()
         currentMantra = messageText.innerText
+        preventRepeatMantra()
     } else if(radioButtonAffirmation.checked) {
         messageText.innerText = randomAffirmation()
         currentAffirmation = messageText.innerText
+        preventRepeatAffirmation()
     } else if(!radioButtonMantra.checked && !radioButtonAffirmation.checked) {
         addToFavesButton.hidden = true
         removeFromPossibleButton.hidden = true
         messageText.innerText = "Please select if you would like an affirmation or a mantra!"
+    }
+}
+function preventRepeatMantra() {
+    for(var i = 0; i < usedMantras.length; i++) {
+        if(usedMantras[i] !== currentMantra && usedMantras.length < 16) {
+            usedMantras.push(currentMantra)
+            return
+        }
+    } 
+    if (usedMantras.length === 16) {
+        addToFavesButton.hidden = true
+        removeFromPossibleButton.hidden = true
+        messageText.innerHTML = "<strong>✨ That's all the mantras!  They will now repeat. ✨</strong>"
+        usedMantras = [""]
+    }
+}
+function preventRepeatAffirmation() {
+    for(var i = 0; i < usedAffirmations.length; i++) {
+        if(usedAffirmations[i] !== currentAffirmation && usedAffirmations.length < 14) {
+            usedAffirmations.push(currentAffirmation)
+            return
+        }
+    } 
+    if (usedAffirmations.length === 14) {
+        addToFavesButton.hidden = true
+        removeFromPossibleButton.hidden = true
+        messageText.innerHTML = "<strong>✨ That's all the affirmations!  They will now repeat. ✨</strong>"
+        usedAffirmations = [""]
     }
 }
 function showHomeView() {
@@ -107,10 +137,11 @@ function removeFromPossible() {
        }
     }
 }
-// Tomorrow:  Make it so you cant get the same mantra/affirmation twice in a row on random click
 // List of messages:
 var currentMantra = "";
 var currentAffirmation = "";
+var usedMantras = [""];
+var usedAffirmations = [""];
 var faveMantras = [];
 var faveAffirmations = [];
 var affirmationArray = ["I forgive myself and set myself free.",

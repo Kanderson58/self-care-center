@@ -34,7 +34,7 @@ h2 {
 }
 
 .see-favorites-button {
-    margin: 5%;
+    margin: 3%;
 }
 
 .clear-message-button {
@@ -61,7 +61,6 @@ h2 {
     width: 500px;
     margin: auto;
     margin-bottom: 5%;
-    margin-left: 31%;
     padding: 1%;
 }
 
@@ -73,7 +72,6 @@ h2 {
     height: 100px;
     margin: auto;
     margin-top: 5%;
-    margin-left: 21%;
     margin-bottom: 2%;
 }
 
