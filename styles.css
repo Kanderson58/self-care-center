@@ -16,7 +16,7 @@ h2 {
     margin-bottom: 0.5%;
 }
 
-.recieve-message-button, .add-to-favorite-button, .see-favorites-button, .home-page-button, .delete-button, .clear-message-button {
+.recieve-message-button, .add-to-favorite-button, .see-favorites-button, .home-page-button, .delete-button, .clear-message-button, .delete-from-possibilities-button {
     background-color: #134d71;
     color: #ffff;
     font-family: 'Quicksand', sans-serif;
@@ -40,6 +40,12 @@ h2 {
 .clear-message-button {
     margin-bottom: 2%;
     margin-left: 2%;
+}
+
+.delete-from-possibilities-button {
+    width: 175px;
+    margin-left: 2%;
+    margin-bottom: 2%;
 }
 
 .delete-button {

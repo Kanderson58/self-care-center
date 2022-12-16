@@ -13,6 +13,7 @@ var addToFavesButton = document.querySelector(".add-to-favorite-button")
 var recieveMessageButton = document.querySelector(".recieve-message-button")
 var viewHomePageButton = document.querySelector(".home-page-button")
 var clearMessageButton = document.querySelector(".clear-message-button")
+var removeFromPossibleButton = document.querySelector(".delete-from-possibilities-button")
 // Event listeners:
 window.addEventListener("load", showHomeView)
 recieveMessageButton.addEventListener("click", displayRandomMessage)
@@ -20,11 +21,13 @@ addToFavesButton.addEventListener("click", addToFaves)
 viewFavoritesButton.addEventListener("click", showFavorites)
 viewHomePageButton.addEventListener("click", hideFaveView)
 clearMessageButton.addEventListener("click", clearMessage)
+removeFromPossibleButton.addEventListener("click", removeFromPossible)
 // Event handlers:
 function displayRandomMessage() {
     svg.style.display = "none"
     addToFavesButton.hidden = false
     clearMessageButton.hidden = false
+    removeFromPossibleButton.hidden = false
     if(radioButtonMantra.checked) {
         messageText.innerText = randomMantra()
         currentMantra = messageText.innerText
@@ -33,12 +36,14 @@ function displayRandomMessage() {
         currentAffirmation = messageText.innerText
     } else if(!radioButtonMantra.checked && !radioButtonAffirmation.checked) {
         addToFavesButton.hidden = true
+        removeFromPossibleButton.hidden = true
         messageText.innerText = "Please select if you would like an affirmation or a mantra!"
     }
 }
 function showHomeView() {
     addToFavesButton.hidden = true
     clearMessageButton.hidden = true
+    removeFromPossibleButton.hidden = true
     seeHomeView.style.display = "inline"
     seeFavoritesView.style.display = "none"
 }
@@ -83,8 +88,26 @@ function clearMessage() {
     messageText.innerText = ""
     addToFavesButton.hidden = true
     clearMessageButton.hidden = true
+    removeFromPossibleButton.hidden = true
     svg.style.display = "inline"
 }
+function removeFromPossible() {
+    for(var i = 0; i < mantraArray.length; i++) {
+        if(radioButtonMantra.checked && currentMantra === mantraArray[i]) {
+            mantraArray.splice(i, 1)
+            alert("Got it!  We won't show you that mantra again.")
+            clearMessage()
+        }
+    }
+    for(var i = 0; i < affirmationArray.length; i++) {
+        if (radioButtonAffirmation.checked && currentAffirmation === affirmationArray[i]) {
+            affirmationArray.splice(i, 1)
+            alert("Got it!  We won't show you that affirmation again.")
+            clearMessage()
+       }
+    }
+}
+// Tomorrow:  Make it so you cant get the same mantra/affirmation twice in a row on random click
 // List of messages:
 var currentMantra = "";
 var currentAffirmation = "";
