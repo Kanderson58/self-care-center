@@ -1,116 +1,134 @@
-// Query selected elements:
-var svg = document.querySelector(".svg")
-var messageText = document.querySelector(".message-text")
-var radioButtonMantra = document.getElementById("mantra")
-var radioButtonAffirmation = document.getElementById("affirmation")
-var seeFavoritesView = document.querySelector(".view-favorites")
-var seeHomeView = document.querySelector(".home-view")
-var favoriteAffirmations = document.querySelector("#favorite-affirmations")
-var favoriteMantras = document.querySelector("#favorite-mantras")
-var seeLoginView = document.querySelector(".login-view")
-var nameInput = document.querySelector(".login")
-var homeGreeting = document.querySelector(".say-hello")
-var doItYourselfForm = document.querySelector(".DIY-form")
-var userNewMessage = document.querySelector(".DIY")
-// Buttons:
-var submitButton = document.querySelector(".submit-button")
-var viewFavoritesButton = document.querySelector(".see-favorites-button")
-var addToFavesButton = document.querySelector(".add-to-favorite-button")
-var recieveMessageButton = document.querySelector(".recieve-message-button")
-var viewHomePageButton = document.querySelector(".home-page-button")
-var clearMessageButton = document.querySelector(".clear-message-button")
-var removeFromPossibleButton = document.querySelector(".delete-from-possibilities-button")
-var makeYourOwnButton = document.querySelector(".make-own-button")
-var submitYourOwnButton = document.querySelector(".DIY-button")
-// Event listeners:
-window.addEventListener("load", showLoginView)
-submitButton.addEventListener("click", showHomeView)
-recieveMessageButton.addEventListener("click", displayRandomMessage)
-addToFavesButton.addEventListener("click", addToFaves)
-viewFavoritesButton.addEventListener("click", showFavorites)
-viewHomePageButton.addEventListener("click", hideFaveView)
-clearMessageButton.addEventListener("click", clearMessage)
-removeFromPossibleButton.addEventListener("click", removeFromPossible)
-makeYourOwnButton.addEventListener("click", makeYourOwn)
-submitYourOwnButton.addEventListener("click", submitYourOwn)
-// Event handlers: 
+var svg = document.querySelector(".svg");
+var messageText = document.querySelector(".message-text");
+var seeLoginView = document.querySelector(".login-view");
+var seeHomeView = document.querySelector(".home-view");
+var seeFavoritesView = document.querySelector(".view-favorites");
+var favoriteAffirmations = document.querySelector("#favorite-affirmations");
+var favoriteMantras = document.querySelector("#favorite-mantras");
+var nameInput = document.querySelector(".login");
+var homeGreeting = document.querySelector(".say-hello");
+var doItYourselfForm = document.querySelector(".DIY-form");
+var userNewMessage = document.querySelector(".DIY");
+var submitButton = document.querySelector(".submit-button");
+var radioButtonAffirmation = document.getElementById("affirmation");
+var radioButtonMantra = document.getElementById("mantra");
+var viewFavoritesButton = document.querySelector(".see-favorites-button");
+var addToFavesButton = document.querySelector(".add-to-favorite-button");
+var recieveMessageButton = document.querySelector(".recieve-message-button");
+var viewHomePageButton = document.querySelector(".home-page-button");
+var clearMessageButton = document.querySelector(".clear-message-button");
+var removeFromPossibleButton = document.querySelector(".delete-from-possibilities-button");
+var makeYourOwnButton = document.querySelector(".make-own-button");
+var submitYourOwnButton = document.querySelector(".DIY-button");
+
+window.addEventListener("load", showLoginView);
+radioButtonAffirmation.addEventListener("click", changeToAffirmation);
+radioButtonMantra.addEventListener("click", changeToMantra);
+submitButton.addEventListener("click", showHomeView);
+recieveMessageButton.addEventListener("click", displayRandomMessage);
+addToFavesButton.addEventListener("click", addToFaves);
+viewFavoritesButton.addEventListener("click", showFavorites);
+viewHomePageButton.addEventListener("click", hideFaveView);
+clearMessageButton.addEventListener("click", clearMessage);
+removeFromPossibleButton.addEventListener("click", removeFromPossible);
+makeYourOwnButton.addEventListener("click", makeYourOwn);
+submitYourOwnButton.addEventListener("click", submitYourOwn);
+
 function showLoginView() {
-    seeLoginView.style.display = "inline"
-    seeHomeView.style.display = "none"
-    seeFavoritesView.style.display = "none"
+    seeLoginView.style.display = "inline";
+    seeHomeView.style.display = "none";
+    seeFavoritesView.style.display = "none";
 }
+
 function showHomeView() {
     if (nameInput.value) {
-        homeGreeting.innerHTML = `Hello <span>${nameInput.value}</span>, we're glad you're here!`
-        addToFavesButton.hidden = true
-        clearMessageButton.hidden = true
-        removeFromPossibleButton.hidden = true
-        doItYourselfForm.hidden = true
-        seeHomeView.style.display = "inline"
-        seeFavoritesView.style.display = "none"
-        seeLoginView.style.display = "none"
+        homeGreeting.innerHTML = `Hello <span>${nameInput.value}</span>, we're glad you're here!`;
+        addToFavesButton.hidden = true;
+        clearMessageButton.hidden = true;
+        removeFromPossibleButton.hidden = true;
+        doItYourselfForm.hidden = true;
+        seeHomeView.style.display = "inline";
+        seeFavoritesView.style.display = "none";
+        seeLoginView.style.display = "none";
     } else {
-        alert("Please enter your name to continue!")
+        alert("Please enter your name to continue!");
     }
 }
+
 function hideFaveView() {
-    seeHomeView.style.display = "inline"
-    seeFavoritesView.style.display = "none"
-    seeLoginView.style.display = "none"
+    seeHomeView.style.display = "inline";
+    seeFavoritesView.style.display = "none";
+    seeLoginView.style.display = "none";
 }
+
+function changeToAffirmation() {
+    recieveMessageButton.innerText = "Receive Affirmation";
+    submitYourOwnButton.innerText = "Submit Affirmation"
+}
+
+function changeToMantra() {
+    recieveMessageButton.innerText = "Receive Mantra";
+    submitYourOwnButton.innerText = "Submit Mantra"
+}
+
 function displayRandomMessage() {
-    svg.style.display = "none"
-    addToFavesButton.hidden = false
-    clearMessageButton.hidden = false
-    removeFromPossibleButton.hidden = false
-    if(radioButtonMantra.checked) {
-        messageText.innerText = randomMantra()
-        currentMantra = messageText.innerText
-        preventRepeatMantra()
-    } else if(radioButtonAffirmation.checked) {
-        messageText.innerText = randomAffirmation()
-        currentAffirmation = messageText.innerText
-        preventRepeatAffirmation()
+    svg.style.display = "none";
+    addToFavesButton.hidden = false;
+    clearMessageButton.hidden = false;
+    removeFromPossibleButton.hidden = false;
+    if(radioButtonAffirmation.checked) {
+        messageText.innerText = randomAffirmation();
+        currentAffirmation = messageText.innerText;
+        preventRepeatAffirmation();
+    } else if(radioButtonMantra.checked) {
+        messageText.innerText = randomMantra();
+        currentMantra = messageText.innerText;
+        preventRepeatMantra();
     } else if(!radioButtonMantra.checked && !radioButtonAffirmation.checked) {
-        addToFavesButton.hidden = true
-        removeFromPossibleButton.hidden = true
-        messageText.innerText = "Please select if you would like an affirmation or a mantra!"
+        addToFavesButton.hidden = true;
+        removeFromPossibleButton.hidden = true;
+        messageText.innerText = "Please select if you would like an affirmation or a mantra!";
     }
 }
-function preventRepeatMantra() {
-    for(var i = 0; i < usedMantras.length; i++) {
-        if(usedMantras[i] !== currentMantra && usedMantras.length < mantraArray.length + 1) {
-            usedMantras.push(currentMantra)
-            return
-        }
-    } 
-    if (usedMantras.length === mantraArray.length + 1) {
-        addToFavesButton.hidden = true
-        removeFromPossibleButton.hidden = true
-        messageText.innerHTML = "<strong>✨ That's all the mantras!  They will now repeat. ✨</strong>"
-        usedMantras = [""]
-    }
-}
+
 function preventRepeatAffirmation() {
     for(var i = 0; i < usedAffirmations.length; i++) {
         if(usedAffirmations[i] !== currentAffirmation && usedAffirmations.length < affirmationArray.length + 1) {
-            usedAffirmations.push(currentAffirmation)
-            return
+            usedAffirmations.push(currentAffirmation);
+            return;
         }
     } 
     if (usedAffirmations.length === affirmationArray.length + 1) {
-        addToFavesButton.hidden = true
-        removeFromPossibleButton.hidden = true
-        messageText.innerHTML = "<strong>✨ That's all the affirmations!  They will now repeat. ✨</strong>"
-        usedAffirmations = [""]
+        addToFavesButton.hidden = true;
+        removeFromPossibleButton.hidden = true;
+        messageText.innerHTML = "<strong>✨ That's all the affirmations!  They will now repeat. ✨</strong>";
+        usedAffirmations = [""];
     }
 }
+
+function preventRepeatMantra() {
+    for(var i = 0; i < usedMantras.length; i++) {
+        if(usedMantras[i] !== currentMantra && usedMantras.length < mantraArray.length + 1) {
+            usedMantras.push(currentMantra);
+            return;
+        }
+    } 
+    if (usedMantras.length === mantraArray.length + 1) {
+        addToFavesButton.hidden = true;
+        removeFromPossibleButton.hidden = true;
+        messageText.innerHTML = "<strong>✨ That's all the mantras!  They will now repeat. ✨</strong>";
+        usedMantras = [""];
+    }
+}
+
 function randomAffirmation() {
-    return affirmationArray[Math.floor(Math.random() * affirmationArray.length)]
+    return affirmationArray[Math.floor(Math.random() * affirmationArray.length)];
 }
+
 function randomMantra() {
-    return mantraArray[Math.floor(Math.random() * mantraArray.length)]
+    return mantraArray[Math.floor(Math.random() * mantraArray.length)];
 }
+
 function addToFaves() {
     if(radioButtonMantra.checked && currentMantra !== "" && faveMantras.includes(currentMantra) === false) {
         faveMantras.push(currentMantra);
@@ -118,73 +136,82 @@ function addToFaves() {
         faveAffirmations.push(currentAffirmation);
     }
 }
+
 function showFavorites() {
-    favoriteMantras.innerHTML = "<strong><u>Favorite Mantras<br><br></u></strong>"
-    favoriteAffirmations.innerHTML = "<strong><u>Favorite Affirmations<br><br></u></strong>"
-    seeHomeView.style.display = "none"
-    seeFavoritesView.style.display = "inline"
+    favoriteAffirmations.innerHTML = "<strong><u>Favorite Affirmations<br><br></u></strong>";
+    favoriteMantras.innerHTML = "<strong><u>Favorite Mantras<br><br></u></strong>";
+    seeHomeView.style.display = "none";
+    seeFavoritesView.style.display = "inline";
     for(var i = 0; i < faveAffirmations.length; i++) {
-        favoriteAffirmations.innerHTML += `<li>${faveAffirmations[i]} <button class="delete-button" onclick="deleteAffirmation(${i})">Delete</button><br><br></li>`
+        favoriteAffirmations.innerHTML += `<li>${faveAffirmations[i]} <button class="delete-button" onclick="deleteAffirmation(${i})">Delete</button><br><br></li>`;
     }
     for(var i = 0; i < faveMantras.length; i++) {
-        favoriteMantras.innerHTML += `<li>${faveMantras[i]} <button class="delete-button" onclick="deleteMantra(${i})">Delete</button><br><br></li>`
+        favoriteMantras.innerHTML += `<li>${faveMantras[i]} <button class="delete-button" onclick="deleteMantra(${i})">Delete</button><br><br></li>`;
     }
 }
+
 function deleteAffirmation(i) {
     faveAffirmations.splice(i, 1);
-    showFavorites()
+    showFavorites();
 }
+
 function deleteMantra(i) {
     faveMantras.splice(i, 1);
-    showFavorites()
+    showFavorites();
 }
+
 function clearMessage() {
-    messageText.innerText = ""
-    addToFavesButton.hidden = true
-    clearMessageButton.hidden = true
-    removeFromPossibleButton.hidden = true
-    svg.style.display = "inline"
+    messageText.innerText = "";
+    addToFavesButton.hidden = true;
+    clearMessageButton.hidden = true;
+    removeFromPossibleButton.hidden = true;
+    svg.style.display = "inline";
 }
+
 function removeFromPossible() {
-    for(var i = 0; i < mantraArray.length; i++) {
-        if(radioButtonMantra.checked && currentMantra === mantraArray[i]) {
-            mantraArray.splice(i, 1)
-            alert("Got it!  We won't show you that mantra again.")
-            clearMessage()
-        }
-    }
     for(var i = 0; i < affirmationArray.length; i++) {
         if (radioButtonAffirmation.checked && currentAffirmation === affirmationArray[i]) {
-            affirmationArray.splice(i, 1)
-            alert("Got it!  We won't show you that affirmation again.")
-            clearMessage()
+            affirmationArray.splice(i, 1);
+            alert("Got it!  We won't show you that affirmation again.");
+            clearMessage();
        }
     }
-}
-function makeYourOwn() {
-    doItYourselfForm.hidden = false
-    makeYourOwnButton.hidden = true
-}
-function submitYourOwn() {
-    svg.style.display = "none"
-    clearMessageButton.hidden = false
-    addToFavesButton.hidden = false
-    removeFromPossibleButton.hidden = true
-    if(!radioButtonMantra.checked && !radioButtonAffirmation.checked) {
-        messageText.innerText = "Please select if you would like an affirmation or a mantra!"
-    } else if(userNewMessage.value === "") {
-        messageText.innerText = "Please write your message in the box!"
-    } else if(radioButtonMantra.checked && mantraArray.includes(userNewMessage.value) === false) {
-        currentMantra = userNewMessage.value
-        mantraArray.push(userNewMessage.value)
-        messageText.innerText = userNewMessage.value
-    } else if(radioButtonAffirmation.checked && affirmationArray.includes(userNewMessage.value) === false) {
-        currentAffirmation = userNewMessage.value
-        affirmationArray.push(userNewMessage.value)
-        messageText.innerText = userNewMessage.value
+    for(var i = 0; i < mantraArray.length; i++) {
+        if(radioButtonMantra.checked && currentMantra === mantraArray[i]) {
+            mantraArray.splice(i, 1);
+            alert("Got it!  We won't show you that mantra again.");
+            clearMessage();
+        }
     }
 }
-// List of messages:
+
+function makeYourOwn() {
+    doItYourselfForm.hidden = false;
+    makeYourOwnButton.hidden = true;
+}
+
+function submitYourOwn() {
+    svg.style.display = "none";
+    clearMessageButton.hidden = false;
+    addToFavesButton.hidden = false;
+    removeFromPossibleButton.hidden = true;
+    if(!radioButtonMantra.checked && !radioButtonAffirmation.checked) {
+        messageText.innerText = "Please select if you would like an affirmation or a mantra!";
+    } else if(userNewMessage.value === "") {
+        messageText.innerText = "Please write your message in the box!";
+    } else if(radioButtonAffirmation.checked && affirmationArray.includes(userNewMessage.value) === false) {
+        currentAffirmation = userNewMessage.value;
+        affirmationArray.push(userNewMessage.value);
+        messageText.innerText = userNewMessage.value;
+        userNewMessage.value = "";
+    } else if(radioButtonMantra.checked && mantraArray.includes(userNewMessage.value) === false) {
+        currentMantra = userNewMessage.value;
+        mantraArray.push(userNewMessage.value);
+        messageText.innerText = userNewMessage.value;
+        userNewMessage.value = "";
+    } 
+}
+
 var currentMantra = "";
 var currentAffirmation = "";
 var usedMantras = [""];

@@ -39,11 +39,12 @@ span {
 .recieve-message-button {
     display: block;
     margin: auto;
-    margin-top: 1%;
+    margin-top: 3%;
+    margin-bottom: 2%;
 }
 
 .see-favorites-button, .submit-button, .make-own-button, .DIY-button {
-    margin: 2%;
+    margin: 1%;
 }
 
 .delete-from-possibilities-button, .add-to-favorite-button, .clear-message-button {
@@ -90,7 +91,7 @@ span {
 }
 
 .DIY {
-    margin: 1%
+    margin: 3%
 }
 
 .column {
