@@ -21,6 +21,10 @@ span {
     color: #f7e4bf;
 }
 
+.hidden {
+    display: none;
+}
+
 .greeting {
     margin-top: 10%;
 }
@@ -78,7 +82,7 @@ span {
     height: 100px;
     margin: auto;
     margin-top: 5%;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
 }
 
 .mantra, .affirmation {
@@ -90,8 +94,21 @@ span {
     padding-top: 2%;
 }
 
+.svg {
+    height: 70px;
+    width: 70px;
+}
+
+.login {
+    border: 0;
+    border-radius: 5px;
+}
+
 .DIY {
     margin: 3%;
+    border: solid;
+    border-radius: 5px;
+    border-color: #78a7c6;
 }
 
 .column {
