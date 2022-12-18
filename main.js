@@ -21,7 +21,6 @@ var removeFromPossibleButton = document.querySelector(".delete-from-possibilitie
 var makeYourOwnButton = document.querySelector(".make-own-button");
 var submitYourOwnButton = document.querySelector(".DIY-button");
 
-window.addEventListener("load", showLoginView);
 radioButtonAffirmation.addEventListener("click", changeToAffirmation);
 radioButtonMantra.addEventListener("click", changeToMantra);
 submitButton.addEventListener("click", showHomeView);
@@ -33,12 +32,6 @@ clearMessageButton.addEventListener("click", clearMessage);
 removeFromPossibleButton.addEventListener("click", removeFromPossible);
 makeYourOwnButton.addEventListener("click", makeYourOwn);
 submitYourOwnButton.addEventListener("click", submitYourOwn);
-
-function showLoginView() {
-    seeLoginView.style.display = "inline";
-    seeHomeView.style.display = "none";
-    seeFavoritesView.style.display = "none";
-}
 
 function showHomeView() {
     if (nameInput.value) {
