@@ -18,11 +18,11 @@ h2, h4, span {
 }
 
 span {
-    color: #f7e4bf
+    color: #f7e4bf;
 }
 
 .greeting {
-    margin-top: 10%
+    margin-top: 10%;
 }
 
 .recieve-message-button, .add-to-favorite-button, .see-favorites-button, .home-page-button, .delete-button, .clear-message-button, .delete-from-possibilities-button, .submit-button, .make-own-button, .DIY-button {
@@ -91,7 +91,7 @@ span {
 }
 
 .DIY {
-    margin: 3%
+    margin: 3%;
 }
 
 .column {
